@@ -1,0 +1,33 @@
+defmodule Decode do
+  def reg8(<<7::size(3)>>), do: "A"
+  def reg8(<<0::size(3)>>), do: "B"
+  def reg8(<<1::size(3)>>), do: "C"
+  def reg8(<<2::size(3)>>), do: "D"
+  def reg8(<<3::size(3)>>), do: "E"
+  def reg8(<<4::size(3)>>), do: "H"
+  def reg8(<<5::size(3)>>), do: "L"
+  def reg8(_), do: raise "Invalid register"
+
+  def reg16(<<0::size(2)>>), do: "BC"
+  def reg16(<<1::size(2)>>), do: "DE"
+  def reg16(<<2::size(2)>>), do: "HL"
+  def reg16(<<3::size(2)>>), do: "SP"
+
+  def cond_code(<<0x0::size(3)>>), do: "NZ"
+  def cond_code(<<0x1::size(3)>>), do: "Z"
+  def cond_code(<<0x2::size(3)>>), do: "NC"
+  def cond_code(<<0x3::size(3)>>), do: "C"
+  def cond_code(<<0x4::size(3)>>), do: "PO"
+  def cond_code(<<0x5::size(3)>>), do: "PE"
+  def cond_code(<<0x6::size(3)>>), do: "P"
+  def cond_code(<<0x7::size(3)>>), do: "M"
+
+  def page_val(0), do: "00h"
+  def page_val(1), do: "08h"
+  def page_val(2), do: "10h"
+  def page_val(3), do: "18h"
+  def page_val(4), do: "20h"
+  def page_val(5), do: "28h"
+  def page_val(6), do: "30h"
+  def page_val(7), do: "38h"
+end
